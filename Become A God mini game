@@ -1,0 +1,67 @@
+#include <iostream>
+#include <Windows.h>
+
+int main()
+{
+	//Declarar variaveis
+	int maxHealth = 100;
+	double integrityMaxHealthCheck = 100;
+	int Health = 100;
+	double integrityHealthCheck = 100;
+
+	while (true)
+	{
+		Sleep(50);
+		//Dar Prints sobre o jogo
+		system("cls");
+		std::cout << "Welcome to Zeus altar! I see you wish to become a god!" << std::endl;
+		std::cout << "Well, in order to do so you have to do something...." << std::endl;
+		std::cout << "I want you to change your health to 1000, and then I'll let you become a god" << std::endl;
+		std::cout << "So go ahead, show me your skills, lets see if your worthy!" << std::endl;
+		std::cout << "Oh I forgot to mention, you need to hurt yourself in order to proceed. Press any key..." << std::endl;
+		std::cout << "" << std::endl;
+		std::cout << "Current Health: " << Health << std::endl;
+		std::cin.get();
+
+		//Gerar uma previsão de quanto seria 
+		int prediction = Health - 5;
+
+		//--------------------------------------------Anti-Cheat stuff------------------------------------------------
+		//Health Changes Prevention System
+		if (prediction < integrityHealthCheck)
+		{
+			Health -= 5;
+			integrityHealthCheck = Health;
+		}
+		else if (prediction > integrityHealthCheck)
+		{
+			std::cout << "So much HP out of the blue! Do you think you can trick a god? Get the fuck out of here!" << std::endl;
+			std::cin.get();
+			break;
+		}
+
+		//Health bigger then MaxHealth prevention system
+		if (Health > maxHealth)
+		{
+			std::cout << "Hmmm, you think I am a fool? Haaahaahaaa, try again you philty human" << std::endl;
+			std::cin.get();
+			break;
+		}
+
+		//Max Health Changes Prevention System
+		if (maxHealth > integrityMaxHealthCheck)
+		{
+			std::cout << "Looks like we found a unworthy player, cheating to become a god? God's sake, get the fuck out!" << std::endl;
+			std::cin.get();
+			break;
+		}
+
+		//If Anti-Cheat Stuff Bypassed then become a god!
+		if (Health >= 1000)
+		{
+			std::cout << "Wow! You really deserve to have a gods power! Take it and dominate the multiplayer world!" << std::endl;
+			std::cin.get();
+			break;
+		}
+	}
+}
